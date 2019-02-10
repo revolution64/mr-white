@@ -1,0 +1,161 @@
+@font-face {
+  font-family: 'aira';
+  src: url(font-e6ecd5ef-ac3b-495f-bbb0-cf0f0203d92e) format("truetype"); }
+
+.rb-menu-container {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  border-bottom: 1px solid lightgray;
+  border-left: 1px solid lightgray;
+  border-right: 1px solid lightgray;
+  background: #F8F8F8; }
+  .rb-menu-container .rb-menu-logo {
+    padding: 15px 20px;
+    font-family: 'Bahnschrift';
+    padding: 15px; }
+    @media (min-width: 992px) {
+      .rb-menu-container .rb-menu-logo {
+        padding: 20px 50px; } }
+  .rb-menu-container .rb-menu-items {
+    width: 80%;
+    display: flex;
+    justify-content: flex-end; }
+    .rb-menu-container .rb-menu-items .rb-menu-item {
+      padding: 15px 20px;
+      font-family: 'Bahnschrift';
+      font-size: 12px; }
+      @media (min-width: 992px) {
+        .rb-menu-container .rb-menu-items .rb-menu-item {
+          padding: 20px 50px; } }
+      .rb-menu-container .rb-menu-items .rb-menu-item:hover {
+        background: white;
+        cursor: pointer; }
+
+.rb-mrwhite-container .rb-add-player-label {
+  margin-right: 15px; }
+
+.rb-mrwhite-container .rb-form-add-players {
+  margin-bottom: 30px; }
+
+.rb-button {
+  width: 30%;
+  height: 50px;
+  margin: 4px;
+  color: white; }
+
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed,
+figure, figcaption, footer, header, hgroup,
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-size: 100%;
+  font: inherit;
+  vertical-align: baseline; }
+
+/* HTML5 display-role reset for older browsers */
+article, aside, details, figcaption, figure,
+footer, header, hgroup, menu, nav, section {
+  display: block; }
+
+body {
+  line-height: 1; }
+
+ol, ul {
+  list-style: none; }
+
+blockquote, q {
+  quotes: none; }
+
+blockquote:before, blockquote:after,
+q:before, q:after {
+  content: '';
+  content: none; }
+
+table {
+  border-collapse: collapse;
+  border-spacing: 0; }
+
+hr {
+  border: 2px solid #666; }
+
+html {
+  box-sizing: border-box;
+  height: 100%; }
+
+body {
+  background: whitesmoke;
+  height: 100%;
+  font-family: 'Alegreya Sans';
+  font-size: 20px; }
+
+h1 {
+  color: #333;
+  font-family: 'Alegreya Sans';
+  font-size: 34px;
+  font-weight: 300;
+  line-height: 30px;
+  letter-spacing: -0.015em;
+  margin-bottom: 48px;
+  max-width: 600px; }
+
+h1:before {
+  background: #6fd7f1;
+  content: '';
+  display: block;
+  height: 3px;
+  margin: 25px 0;
+  width: 50px; }
+
+p {
+  color: #555;
+  margin-block-start: 0px;
+  font-family: 'Alegreya Sans';
+  font-size: 20px;
+  font-weight: 400;
+  line-height: 26px;
+  text-indent: 5px;
+  max-width: 600px;
+  margin-bottom: 20px; }
+
+a {
+  color: #6fd7f1;
+  border-bottom: 1px solid #6fd7f1;
+  font-family: 'Alegreya Sans';
+  font-size: 20px;
+  text-decoration: none; }
+
+a:hover {
+  border-bottom: 1px solid #ddd;
+  color: #555; }
+
+#root {
+  height: 100%;
+  width: 100%; }
+
+.rb-main-column {
+  height: 100%;
+  width: 100%;
+  display: flex;
+  background: white;
+  flex-direction: column; }
+  @media (min-width: 992px) {
+    .rb-main-column {
+      width: 60%;
+      margin: 0 17%; } }
+
+.rb-content-container {
+  padding: 5%; }
+
+/*# sourceMappingURL=bundle.css.map*/

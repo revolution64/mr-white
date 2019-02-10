@@ -1,0 +1,40 @@
+
+.rb-menu-container {
+	display: flex;
+	flex-direction: row;
+	width: 100%;
+	border-bottom: 1px solid lightgray;
+	border-left: 1px solid lightgray;
+	border-right: 1px solid lightgray;
+	background: $menu-grey-red;
+
+	.rb-menu-logo {
+		padding: 15px 20px;
+		font-family: 'Bahnschrift';
+		padding: 15px;
+		@media (min-width: $screen-md-min) {
+			padding: $menu-padding
+		}
+
+	}
+
+	.rb-menu-items {
+		width: 80%;
+		display: flex;
+		justify-content: flex-end;
+
+		.rb-menu-item {
+			padding: 20px 20px;
+			font-family: 'Bahnschrift';
+			font-size: 12px;
+			@media (min-width: $screen-md-min) {
+				padding: $menu-padding
+			}
+			&:hover {
+				background: white;
+				cursor: pointer;
+			}
+		}
+	}
+
+}
