@@ -40,9 +40,8 @@ class MrWhiteAddPlayers extends Component {
             <Fragment>
                 <h1>Voeg spelers toe</h1>
                 <form className="rb-margin-bottom" onSubmit={this.handleSubmitButton}>
-                    <span className="rb-add-player-label">Speler naam:</span>
-                    <input name="name" type="text"/>
-                    <input type="submit"/>
+                    <input className="rb-input-add-name" name="name" type="text"/>
+                    <input className="rb-submit-add-name" type="submit" value="Voeg toe"/>
                 </form>
                 {playerButtons}
                 <div className="rb-margin-top">

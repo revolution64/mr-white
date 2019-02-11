@@ -4,7 +4,7 @@ class MenuItem extends Component {
 
     render() {
         return (
-          <span className="rb-menu-logo">Revoblog</span>
+          <span className="rb-menu-logo">MrWhite</span>
         );
     }
 }

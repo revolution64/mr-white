@@ -11,7 +11,7 @@ class Menu extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            menuItems: ['Blog', CONSTANTS.SECTION.MRWHITE, 'About']
+            menuItems: ['Start Over', 'Score', 'About']
         };
     }
 

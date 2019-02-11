@@ -20,6 +20,7 @@ class MrWhiteGame extends Component {
         this.openModal = this.openModal.bind(this);
         this.closeModal = this.closeModal.bind(this);
         this.goToNextPhase = this.goToNextPhase.bind(this);
+        this.startNextRound = this.startNextRound.bind(this);
     }
 
     componentDidMount() {
@@ -52,6 +53,14 @@ class MrWhiteGame extends Component {
 
     mapPlayerToButton(player) {
         return <Button label={player.name} onClick={() => (this.openModal(player))} color={player.color}/>;
+    }
+
+    startNextRound() {
+        this.configurePlayerRoles(this.props.players);
+        this.setState({
+            modalIsOpen: false,
+            phase: CONSTANTS.MRWHITE.PHASES.CLICK_YOUR_NAME
+        });
     }
 
     openModal(player) {
@@ -88,51 +97,63 @@ class MrWhiteGame extends Component {
     getInstructionBasedOnPhase(phase) {
         switch (phase) {
             case CONSTANTS.MRWHITE.PHASES.CLICK_YOUR_NAME:
-                return 'Klik op jouw naam';
+                return <h2>Klik op jouw naam:</h2>;
             case CONSTANTS.MRWHITE.PHASES.REVEAL_PLAYER:
-                return this.state.whoWillStart.name + ' zal starten\n\n Wie is Mr White?';
+                return <Fragment>
+                    <h2>{this.state.whoWillStart.name}...  Jij begint!</h2>
+                    <h2>Wie is Mr White?</h2>
+                </Fragment>;
         }
     }
 
     getContentToShowInModal(selectedPlayer, currentWord, phase) {
+        let modalContent;
         switch (phase) {
             case CONSTANTS.MRWHITE.PHASES.CLICK_YOUR_NAME:
                 if (selectedPlayer.isMrWhite) {
-                    return {close: true, text: '... ;-)(Jij bent mr White!)'};
+                    modalContent = {close: true, text: '... Jij bent mr White!'};
                 } else {
-                    return {close: true, text: currentWord};
+                    modalContent = {close: true, text: currentWord};
                 }
+                break;
             case CONSTANTS.MRWHITE.PHASES.REVEAL_PLAYER:
                 if (selectedPlayer.isMrWhite) {
-                    return {text: 'Juist gegokt! :-) \nMr White mag nu het woord raden: }',
-                            children: (<MrWhiteGuessWord currentWord={currentWord} goToNextRound={() => { this.goToNextPhase(phase); this.closeModal() }}/>),
-                            close: false};
+                    modalContent = {
+                        text: 'Juist gegokt! :-) \nMr White mag nu het woord raden: ',
+                        children: (<MrWhiteGuessWord currentWord={currentWord}
+                                                     goToNextRound={this.startNextRound}/>),
+                        close: false
+                    };
                 } else {
-                    return {
+                    modalContent = {
                         close: true,
                         text: 'Fout gegokt! :-('
                     };
                 }
+                break;
             default :
-                return {text: 'An Error Occured', close: true};
+                modalContent = {text: 'An Error Occured', close: true};
+                break;
         }
+
+        return <RBModal close={modalContent.close} text={modalContent.text} children={modalContent.children}
+                        isOpen={this.state.modalIsOpen} onClose={this.closeModal}/>;
     }
 
 
     render() {
         const {phase, modalIsOpen, selectedPlayer, currentWord} = this.state,
             instruction = this.getInstructionBasedOnPhase(phase),
-            contentToShowInModal = modalIsOpen && this.getContentToShowInModal(selectedPlayer, currentWord, phase),
-            modal = <RBModal close={contentToShowInModal.close} text={contentToShowInModal.text} children={contentToShowInModal.children}
-                             isOpen={modalIsOpen} onClose={this.closeModal}/>,
+            modal = modalIsOpen && this.getContentToShowInModal(selectedPlayer, currentWord, phase),
             startRound = phase === CONSTANTS.MRWHITE.PHASES.CLICK_YOUR_NAME
-                && (<a className="rb-margin-top" onClick={() => this.goToNextPhase(phase)}>Begin ronde!</a>),
+                && (<div className={'rb-margin-top'}><a onClick={() => this.goToNextPhase(phase)}>Begin ronde!</a>
+                </div>),
             playerButtons = this.props.players.map(
                 (key) => this.mapPlayerToButton(key));
 
         return (
             <Fragment>
-                <h1>{instruction}</h1>
+                {instruction}
                 {playerButtons}
                 {modal}
                 {startRound}

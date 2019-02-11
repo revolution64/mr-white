@@ -67,12 +67,12 @@ body {
 
 h1 {
 	color: #333;
-	font-family: 'Alegreya Sans';
+	font-family: 'Bahnschrift';
 	font-size: 34px;
 	font-weight: 300;
 	line-height: 30px;
 	letter-spacing: -0.015em;
-	margin-bottom: 48px;
+	margin-bottom: 20px;
 	max-width: 600px;
 }
 
@@ -87,12 +87,12 @@ h1:before {
 
 h2 {
 	color: #333;
-	font-family: 'Alegreya Sans';
+	font-family: 'Bahnschrift';
 	font-size: 20px;
 	font-weight: 300;
 	line-height: 30px;
 	letter-spacing: -0.015em;
-	margin-bottom: 48px;
+	margin-bottom: 20px;
 	max-width: 600px;
 }
 
@@ -107,18 +107,17 @@ h2:before {
 p {
 	color: #555;
 	margin-block-start: 0px;
-	font-family: 'Alegreya Sans';
+	font-family: 'Bahnschrift';
 	font-size: 20px;
-	font-weight: 400;
+	font-weight: 300;
 	line-height: 26px;
-	text-indent: 5px;
 	max-width: 600px;
 	margin-bottom: 20px;
 }
 
 a {
 	color: #6fd7f1;	border-bottom: 1px solid #6fd7f1;
-	font-family: 'Alegreya Sans';
+	font-family: 'Bahnschrift';
 	font-size: 20px;
 	text-decoration: none;
 }
