@@ -4,7 +4,7 @@ import {connect} from 'react-redux';
 import Button from '../partials/Button/Button';
 import CONSTANTS from '../../constants/Constants';
 import RBModal from '../partials/Modal/RBModal';
-
+import MrWhiteGuessWord from './MrWhiteGuessWord';
 
 
 class MrWhiteGame extends Component {
@@ -19,18 +19,35 @@ class MrWhiteGame extends Component {
 
         this.openModal = this.openModal.bind(this);
         this.closeModal = this.closeModal.bind(this);
-        this.configurePlayerRoles(props.players);
+        this.goToNextPhase = this.goToNextPhase.bind(this);
+    }
+
+    componentDidMount() {
+        this.configurePlayerRoles(this.props.players);
     }
 
     configurePlayerRoles(players) {
         const amountOfPlayers = players.length,
-            whoIsMisterWhite = Math.floor(Math.random() * amountOfPlayers);
+            mrWhitePlayerId = Math.floor(Math.random() * amountOfPlayers),
+            whoWillStart = this.calculateWhoWillStart(amountOfPlayers, mrWhitePlayerId, mrWhitePlayerId);
 
-        for (let i = 0; i<amountOfPlayers ; i++) {
-            players[i].isMrWhite = i === whoIsMisterWhite;
+        for (let i = 0; i < amountOfPlayers; i++) {
+            players[i].isMrWhite = i === mrWhitePlayerId;
         }
 
+        this.setState({
+            whoWillStart: players[whoWillStart]
+        });
         return players;
+    }
+
+    calculateWhoWillStart(amountOfPlayers, mrWhitePlayerId, starterPlayerId) {
+        if (starterPlayerId !== mrWhitePlayerId) {
+            return starterPlayerId;
+        } else {
+            starterPlayerId = Math.floor(Math.random() * amountOfPlayers);
+            return this.calculateWhoWillStart(amountOfPlayers, mrWhitePlayerId, starterPlayerId);
+        }
     }
 
     mapPlayerToButton(player) {
@@ -38,51 +55,87 @@ class MrWhiteGame extends Component {
     }
 
     openModal(player) {
-        this.setState( {
+        this.setState({
             modalIsOpen: true,
             selectedPlayer: player
         });
     }
 
     closeModal() {
-        this.setState( {
+        this.setState({
             modalIsOpen: false
         });
     }
 
+    goToNextPhase(currentPhase) {
+        let nextPhase;
+        switch (currentPhase) {
+            case CONSTANTS.MRWHITE.PHASES.CLICK_YOUR_NAME:
+                nextPhase = CONSTANTS.MRWHITE.PHASES.REVEAL_PLAYER;
+                break;
+            case CONSTANTS.MRWHITE.PHASES.REVEAL_PLAYER:
+                nextPhase = CONSTANTS.MRWHITE.PHASES.GUESS_WORD;
+                break;
+            case CONSTANTS.MRWHITE.PHASES.GUESS_WORD:
+                nextPhase = CONSTANTS.MRWHITE.PHASES.CLICK_YOUR_NAME;
+                break;
+        }
+        this.setState({
+            phase: nextPhase
+        });
+    }
 
     getInstructionBasedOnPhase(phase) {
-        switch(phase) {
+        switch (phase) {
             case CONSTANTS.MRWHITE.PHASES.CLICK_YOUR_NAME:
                 return 'Klik op jouw naam';
             case CONSTANTS.MRWHITE.PHASES.REVEAL_PLAYER:
-                return 'Wie is Mr White';
+                return this.state.whoWillStart.name + ' zal starten\n\n Wie is Mr White?';
         }
     }
 
-    getContentToShowInModal(selectedPlayer, currentWord) {
-        if(selectedPlayer.isMrWhite) {
-            return 'Mr White';
-        } else {
-            return currentWord;
+    getContentToShowInModal(selectedPlayer, currentWord, phase) {
+        switch (phase) {
+            case CONSTANTS.MRWHITE.PHASES.CLICK_YOUR_NAME:
+                if (selectedPlayer.isMrWhite) {
+                    return {close: true, text: '... ;-)(Jij bent mr White!)'};
+                } else {
+                    return {close: true, text: currentWord};
+                }
+            case CONSTANTS.MRWHITE.PHASES.REVEAL_PLAYER:
+                if (selectedPlayer.isMrWhite) {
+                    return {text: 'Juist gegokt! :-) \nMr White mag nu het woord raden: }',
+                            children: (<MrWhiteGuessWord currentWord={currentWord} goToNextRound={() => { this.goToNextPhase(phase); this.closeModal() }}/>),
+                            close: false};
+                } else {
+                    return {
+                        close: true,
+                        text: 'Fout gegokt! :-('
+                    };
+                }
+            default :
+                return {text: 'An Error Occured', close: true};
         }
     }
+
 
     render() {
-        const {phase, modalIsOpen, selectedPlayer, currentWord} = this.state;
-        const playerButtons = this.props.players.map(
-            (key) => this.mapPlayerToButton(key)
-        );
-        const instruction = this.getInstructionBasedOnPhase(phase);
-
-        const contentToShowInModal = modalIsOpen && this.getContentToShowInModal(selectedPlayer, currentWord);
-        const modal = <RBModal content={contentToShowInModal} isOpen={modalIsOpen} onClose={this.closeModal}/>
+        const {phase, modalIsOpen, selectedPlayer, currentWord} = this.state,
+            instruction = this.getInstructionBasedOnPhase(phase),
+            contentToShowInModal = modalIsOpen && this.getContentToShowInModal(selectedPlayer, currentWord, phase),
+            modal = <RBModal close={contentToShowInModal.close} text={contentToShowInModal.text} children={contentToShowInModal.children}
+                             isOpen={modalIsOpen} onClose={this.closeModal}/>,
+            startRound = phase === CONSTANTS.MRWHITE.PHASES.CLICK_YOUR_NAME
+                && (<a className="rb-margin-top" onClick={() => this.goToNextPhase(phase)}>Begin ronde!</a>),
+            playerButtons = this.props.players.map(
+                (key) => this.mapPlayerToButton(key));
 
         return (
             <Fragment>
                 <h1>{instruction}</h1>
                 {playerButtons}
                 {modal}
+                {startRound}
             </Fragment>
         );
     }
@@ -91,7 +144,7 @@ class MrWhiteGame extends Component {
 
 const mapStateToProps = (state) => {
     return {
-        players: state.mrWhite,
+        players: state.mrWhite
     };
 };
 

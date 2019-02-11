@@ -2,7 +2,6 @@ import React, {Fragment, Component} from 'react';
 import helper from '../../utilties/helper';
 import Button from '../partials/Button/Button';
 import {bindActionCreators} from 'redux';
-import menuActions from '../../store/actions/menuActions';
 import {connect} from 'react-redux';
 import mrWhiteActions from '../../store/actions/mrWhiteActions';
 
@@ -56,7 +55,6 @@ class MrWhiteAddPlayers extends Component {
 }
 
 const mapStateToProps = (state) => {
-    console.log(state);
     return {
         players: state.mrWhite,
     };

@@ -9,7 +9,8 @@ export default {
 
         PHASES : {
             CLICK_YOUR_NAME: 'Click Your Name',
-            REVEAL_PLAYER: 'Reveal Player'
+            REVEAL_PLAYER: 'Reveal Player',
+            GUESS_WORD: 'Guess Word'
         }
     }
 }

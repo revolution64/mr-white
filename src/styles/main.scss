@@ -85,6 +85,25 @@ h1:before {
 	width: 50px;
 }
 
+h2 {
+	color: #333;
+	font-family: 'Alegreya Sans';
+	font-size: 20px;
+	font-weight: 300;
+	line-height: 30px;
+	letter-spacing: -0.015em;
+	margin-bottom: 48px;
+	max-width: 600px;
+}
+
+h2:before {
+	background: #6fd7f1;
+	content: '';
+	display: block;
+	height: 3px;
+	margin: 25px 0;
+	width: 50px;
+}
 p {
 	color: #555;
 	margin-block-start: 0px;
