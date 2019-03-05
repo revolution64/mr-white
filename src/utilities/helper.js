@@ -1,3 +1,5 @@
+
+
 const mapNumberToColor = function (number) {
     const arrayOfColors =
         ['#e6194b', '#3cb44b', '#ffe119', '#4363d8', '#f58231', '#911eb4', '#46f0f0',
@@ -5,6 +7,6 @@ const mapNumberToColor = function (number) {
             '#fffac8', '#800000', '#aaffc3', '#808000', '#ffd8b1', '#000075',
             '#808080', '#ffffff', '#000000']
     return arrayOfColors[number];
-}
+};
 
 export default {mapNumberToColor};

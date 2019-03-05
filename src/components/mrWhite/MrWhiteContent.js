@@ -3,6 +3,9 @@ import MrWhiteIntro from './MrWhiteIntro';
 import CONSTANTS from '../../constants/Constants';
 import MrWhiteAddPlayers from './MrWhiteAddPlayers';
 import MrWhiteGame from './MrWhiteGame';
+import {bindActionCreators} from 'redux';
+import mrWhiteActions from '../../store/actions/mrWhiteActions';
+import {connect} from 'react-redux';
 
 class MrWhiteContent extends Component {
 
@@ -13,6 +16,10 @@ class MrWhiteContent extends Component {
         };
     }
 
+    componentDidMount() {
+        this.props.mrWhiteActions.loadWords();
+    }
+
     getComponentBasedOnState(currentContent) {
         switch(currentContent) {
             case CONSTANTS.MRWHITE.INTRO:
@@ -20,7 +27,7 @@ class MrWhiteContent extends Component {
             case CONSTANTS.MRWHITE.ADD_PLAYERS:
                 return <MrWhiteAddPlayers onContinue={() => this.setState( {currentContent: CONSTANTS.MRWHITE.GAME })}/>;
             case CONSTANTS.MRWHITE.GAME:
-                return <MrWhiteGame />
+                return <MrWhiteGame />;
         }
     }
 
@@ -35,5 +42,10 @@ class MrWhiteContent extends Component {
     }
 }
 
+const mapDispatchToProps = (dispatch) => {
+    return {
+        mrWhiteActions: bindActionCreators(mrWhiteActions, dispatch)
+    };
+};
 
-export default MrWhiteContent
+export default connect(null, mapDispatchToProps)(MrWhiteContent);

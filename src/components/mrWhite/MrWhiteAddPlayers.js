@@ -1,5 +1,5 @@
 import React, {Fragment, Component} from 'react';
-import helper from '../../utilties/helper';
+import helper from '../../utilities/helper';
 import Button from '../partials/Button/Button';
 import {bindActionCreators} from 'redux';
 import {connect} from 'react-redux';
@@ -55,7 +55,7 @@ class MrWhiteAddPlayers extends Component {
 
 const mapStateToProps = (state) => {
     return {
-        players: state.mrWhite,
+        players: state.mrWhite.players,
     };
 };
 

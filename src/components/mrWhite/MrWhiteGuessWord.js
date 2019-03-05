@@ -1,5 +1,5 @@
 import React, {Fragment, Component} from 'react';
-import helper from '../../utilties/helper';
+import helper from '../../utilities/helper';
 import Button from '../partials/Button/Button';
 import {bindActionCreators} from 'redux';
 import menuActions from '../../store/actions/menuActions';

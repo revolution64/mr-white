@@ -14,7 +14,7 @@ class MrWhiteGame extends Component {
         this.state = {
             phase: CONSTANTS.MRWHITE.PHASES.CLICK_YOUR_NAME,
             modalIsOpen: false,
-            currentWord: 'hello'
+            currentWord: this.getRandomWord()
         };
 
         this.openModal = this.openModal.bind(this);
@@ -25,6 +25,11 @@ class MrWhiteGame extends Component {
 
     componentDidMount() {
         this.configurePlayerRoles(this.props.players);
+    }
+
+    getRandomWord() {
+        const randomIndex =  Math.floor(Math.random() * this.props.words.length);
+        return this.props.words[randomIndex];
     }
 
     configurePlayerRoles(players) {
@@ -59,7 +64,8 @@ class MrWhiteGame extends Component {
         this.configurePlayerRoles(this.props.players);
         this.setState({
             modalIsOpen: false,
-            phase: CONSTANTS.MRWHITE.PHASES.CLICK_YOUR_NAME
+            phase: CONSTANTS.MRWHITE.PHASES.CLICK_YOUR_NAME,
+            currentWord: this.getRandomWord()
         });
     }
 
@@ -165,7 +171,8 @@ class MrWhiteGame extends Component {
 
 const mapStateToProps = (state) => {
     return {
-        players: state.mrWhite
+        players: state.mrWhite.players,
+        words: state.mrWhite.words
     };
 };
 

@@ -1,18 +1,27 @@
-// Actions are payloads of information that send data from your application to your store. 
-// They are the only source of information for the store.
 
-// Actions are triggered either by user through interactions or by an events, such as successful AJAX call.
+import { ADD_PLAYER, LOAD_WORDS, REMOVE_WORD} from './ActionTypes';
+import { WORDS } from '../../constants/Words';
 
-// Read more on Actions - https://redux.js.org/docs/basics/Actions.html
-
-import { ADD_PLAYER } from './ActionTypes';
-
-const addPlayer = (payload) => {
+const addPlayer = (player) => {
   return {
     type: ADD_PLAYER,
-    payload: payload
+    payload: player
   };
-}
+};
+
+const loadWords = () => {
+  return {
+    type: LOAD_WORDS,
+    payload: WORDS
+  };
+};
+
+const removeWord = (word) => {
+  return {
+    type: REMOVE_WORD,
+    payload: word
+  };
+};
 
 
-export default {addPlayer};
+export default {addPlayer, loadWords, removeWord};
