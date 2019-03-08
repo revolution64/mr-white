@@ -46,8 +46,10 @@ class MrWhiteGuessWord extends Component {
             return (
                 (<form className="rb-margin-bottom" onSubmit={this.handleSubmitButton}>
                     <h2 className="rb-add-player-label">Welk woord denk je dat het is?</h2>
-                    <input className={'rb-input-add-name'} name="word" type="text"/>
-                    <input className={'rb-submit-add-name'} type="submit"/>
+                    <div className="rb-input-class">
+                        <input className={'rb-input-add-name'} name="word" type="text"/>
+                        <input className={'rb-submit-add-name'} type="submit"/>
+                    </div>
                 </form>)
             );
         } else {

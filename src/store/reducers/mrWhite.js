@@ -19,7 +19,7 @@ export default function reducer(state = [], action) {
       return state;
 
     default:
-      return {words: [], players: [{name: 'Seppe', color: 'blue'}, {name: 'An', color: 'red'}, {name: 'Pieter', color: 'black'}]};
+      return {words: [], players: []};
   }
   return state;
 }

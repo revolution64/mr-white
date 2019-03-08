@@ -1,7 +1,7 @@
 {
-  "name": "react-redux-sass-starterkit",
+  "name": "mr-white",
   "version": "1.2.0",
-  "description": "Everything you need to get started with a basic React application",
+  "description": "A great game with friends",
   "watch": true,
   "dependencies": {
     "express": "^4.16.4",
