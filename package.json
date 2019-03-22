@@ -40,7 +40,7 @@
     "webpack-dev-server": "^2.11.3"
   },
   "scripts": {
-    "start": "webpack-dev-server --debug --output-pathinfo",
+    "start": "webpack-dev-server --open --debug --output-pathinfo",
     "build": "webpack",
     "watch": "webpack --watch",
     "lint": "./node_modules/.bin/eslint ./src"

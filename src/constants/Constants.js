@@ -2,6 +2,11 @@ export default {
     SECTION : {
         MRWHITE: 'Mr White'
     },
+    MENU: {
+        START_OVER: 'Start Over',
+        SCORE: 'Score',
+        ABOUT: 'About'
+    },
     MRWHITE: {
         INTRO: 'Intro',
         ADD_PLAYERS: 'Add Players',

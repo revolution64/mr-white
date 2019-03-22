@@ -5,18 +5,25 @@ import { connect } from 'react-redux';
 import {bindActionCreators} from 'redux';
 import CONSTANTS from '../../constants/Constants';
 import menuActions from '../../store/actions/menuActions';
+import Constants from '../../constants/Constants'
+import mrWhiteActions from '../../store/actions/mrWhiteActions';
 
 class Menu extends Component {
 
     constructor(props) {
         super(props);
         this.state = {
-            menuItems: ['Start Over', 'Score', 'About']
+            menuItems: [Constants.MENU.START_OVER,
+                Constants.MENU.SCORE,
+                Constants.MENU.ABOUT]
         };
     }
 
     onMenuItemClick(content) {
-       this.props.menuActions.openMrWhiteContent(content);
+        if (content === Constants.MENU.START_OVER) {
+            mrWhiteActions.removePlayers();
+        }
+       this.props.menuActions.openContent(content);
     }
 
     render() {
@@ -33,7 +40,8 @@ class Menu extends Component {
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        menuActions : bindActionCreators(menuActions, dispatch)
+        menuActions : bindActionCreators(menuActions, dispatch),
+        mrWhiteActions : bindActionCreators(mrWhiteActions, dispatch)
     }
 }
 

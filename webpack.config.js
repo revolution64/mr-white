@@ -5,8 +5,16 @@ const webpack = require("webpack");
 module.exports = {
   entry: ["./src/index.js", "./src/styles/main.scss"],
   output: {
-    filename: "bundle.js",
-    path: path.resolve(__dirname, "./public/dist")
+    publicPath: "/",
+    path: path.join(__dirname, "public"),
+    filename: "bundle.js"
+  },
+  devServer: {
+    contentBase: "./public",
+    inline: true,
+    port: 3000,
+    historyApiFallback: true,
+    watchContentBase: true
   },
   devtool: 'source-map',
   module: {
@@ -41,10 +49,6 @@ module.exports = {
         }
       }
     ]
-  },
-  devServer: {
-    contentBase: "./public/",
-    watchContentBase: true
   },
   plugins: [
     new ExtractTextPlugin("bundle.css"),

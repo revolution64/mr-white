@@ -1,11 +1,17 @@
 
-import { ADD_PLAYER, LOAD_WORDS, REMOVE_WORD} from './ActionTypes';
+import {ADD_PLAYER, LOAD_WORDS, REMOVE_PLAYERS, REMOVE_WORD} from './ActionTypes';
 import { WORDS } from '../../constants/Words';
 
 const addPlayer = (player) => {
   return {
     type: ADD_PLAYER,
     payload: player
+  };
+};
+
+const removePlayers = () => {
+  return {
+    type: REMOVE_PLAYERS
   };
 };
 
@@ -24,4 +30,4 @@ const removeWord = (word) => {
 };
 
 
-export default {addPlayer, loadWords, removeWord};
+export default {addPlayer, loadWords, removeWord, removePlayers};

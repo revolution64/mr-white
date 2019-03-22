@@ -15,4 +15,4 @@ const openContent = (payload) => {
 }
 
 
-export default openContent;
+export default {openContent};

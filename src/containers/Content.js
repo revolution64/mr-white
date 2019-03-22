@@ -1,11 +1,23 @@
 import React, {Component} from 'react';
 import { connect } from 'react-redux';
 import MrWhiteContent from '../components/mrWhite/MrWhiteContent';
+import Constants from '../constants/Constants';
 
 class Content extends Component {
 
     getContentComponentBasedOnKey(key) {
-        return <MrWhiteContent/>;
+        let componentToBeShown = <MrWhiteContent/>;
+        switch(key) {
+            case Constants.MENU.START_OVER:
+                componentToBeShown = <MrWhiteContent/>;
+                break;
+            case Constants.MENU.ABOUT:
+                break;
+            case Constants.MENU.SCORE:
+                break;
+        }
+
+        return componentToBeShown;
     }
 
     render() {

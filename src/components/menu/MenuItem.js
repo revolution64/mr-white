@@ -4,7 +4,7 @@ class MenuItem extends Component {
 
     render() {
         return (
-          <span className="rb-menu-item">{this.props.text}</span>
+          <span onClick={this.props.onClick} className="rb-menu-item">{this.props.text}</span>
         );
     }
 }
