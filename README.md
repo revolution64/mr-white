@@ -1,12 +1,5 @@
 
 
 ## Mr White
-
-'''
-
-npm install
-npm start
-
-'''
-
+README To be added
 
